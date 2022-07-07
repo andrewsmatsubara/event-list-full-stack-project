@@ -5,15 +5,9 @@ export const Input = styled.input`
   border-radius: 5px;
   height: 20px;
   transition: transform .2s;
+  padding-left: 10px;
 
   &:hover {
     transform: scale(1.1);
-  }
-
-  ::placeholder {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    padding: 5px;
   }
 `
