@@ -7,6 +7,7 @@ import { useState } from 'react'
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstLoginTry, setFirstLoginTry] = useState(true);
 
   const handleChange = (e) => {
     if (e.target.placeholder === 'email') {
@@ -16,13 +17,20 @@ export const Login = () => {
     }
   }
 
+  const handleClick = () => {
+    if (email === '' || password === '') {
+      setFirstLoginTry(false)
+    }
+  }
+
   return (
     <div className='login-page'>
       <form className='login-form'>
         <h1>Login</h1>
+        {firstLoginTry === false ? <p>Coloque corretamente o email e senha nos campos requeridos!</p> : ''}
         <Input type='text' placeholder='email' onChange={(e) => handleChange(e)} />
         <Input type='password' placeholder='password' onChange={(e) => handleChange(e)} />
-        <Button>
+        <Button onClick={() => handleClick()} >
           <Link to={(email === '' || password === '') ? '/' : '/home'}>
             Acessar
           </Link>
