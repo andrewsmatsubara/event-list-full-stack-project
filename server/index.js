@@ -1,13 +1,16 @@
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 const { createUserController, readUserController } = require('./controllers/users');
 const app = express();
 const PORT = 3001;
 
 app.use(express.json());
 
-app.post('/register', createUserController);
+app.use(cors());
+
+app.post('/users', createUserController);
 
 app.get('/users', readUserController)
 

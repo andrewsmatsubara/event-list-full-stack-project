@@ -1,6 +1,6 @@
 const { db } = require('./connection.js')
 
-const createUser = async () => {
+const createUser = async (email, password) => {
   const result = await db.execute('INSERT INTO users (email, password) VALUES (?, ?);', [email, password]);
 
   return result;

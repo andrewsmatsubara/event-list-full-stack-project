@@ -1,9 +1,11 @@
 const { createUser, readUser } = require("../models/users");
 
-const createUserController = async (_req, res) => {
-  const user = await createUser();
+const createUserController = async (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const user = await createUser(email, password);
 
-  return res.status(200).json(user);
+  return res.status(201).json(user);
 }
 
 const readUserController = async (_req, res) => {
