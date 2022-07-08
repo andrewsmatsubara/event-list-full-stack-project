@@ -27,7 +27,9 @@ export const Login = () => {
     <div className='login-page'>
       <form className='login-form'>
         <h1>Login</h1>
-        {firstLoginTry === false ? <p>Coloque corretamente o email e senha nos campos requeridos!</p> : ''}
+        {firstLoginTry === false ? <div className='login-issue-container'>
+          <p>Coloque corretamente o email e senha nos campos requeridos!</p>
+        </div> : ''}
         <Input type='text' placeholder='email' onChange={(e) => handleChange(e)} />
         <Input type='password' placeholder='password' onChange={(e) => handleChange(e)} />
         <Button onClick={() => handleClick()} >
