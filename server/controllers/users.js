@@ -1,9 +1,16 @@
-const { createUser, readUser } = require("../models/users");
+const { readUser } = require("../models/users");
+const { createUserService, readUserByEmailService } = require("../services/users");
 
 const createUserController = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  const user = await createUser(email, password);
+  const validateEmail = await readUserByEmailService(email);
+
+  if (validateEmail) {
+    return res.status(validateEmail.statusCode).json({ message: validateEmail.message });
+  }
+
+  const user = await createUserService(email, password);
 
   return res.status(201).json(user);
 }
