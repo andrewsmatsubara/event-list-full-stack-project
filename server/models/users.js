@@ -9,7 +9,7 @@ const createUser = async (email, password) => {
 const readUser = async () => {
   const [result] = await db.execute('SELECT * FROM users;');
 
-  console.log(result);
+  return result;
 }
 
 module.exports = {
