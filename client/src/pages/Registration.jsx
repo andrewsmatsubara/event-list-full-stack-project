@@ -32,11 +32,11 @@ export const Registration = () => {
       <div>Registrar conta</div>
       <Input type="text" placeholder="email" onChange={(e) => handleChange(e)} />
       <Input type="password" placeholder="password" onChange={(e) => handleChange(e)} />
-      <Button onClick={() => handleClick()}>
-        <Link to='registration-result'>
+      <Link to='registration-result'>
+        <Button onClick={() => handleClick()}>
           Registrar
-        </Link>
-      </Button>
+        </Button>
+      </Link>
     </section>
   );
 }
