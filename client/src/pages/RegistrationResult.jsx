@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom"
 import { RegistrationFailed } from '../components/RegistrationFailed';
 import { RegistrationSuccess } from '../components/RegistrationSuccess';
+import { store } from '../redux/store';
+
 export const RegistrationResult = () => {
+  const state = store.getState().reducers.state.newValue;
+
+  console.log(state);
+
   return (
     <div>
-      {'something stored in redux' ? <RegistrationFailed /> : <RegistrationSuccess />}
-      <Link to='/'>Tela de login</Link>
+      {state ? <RegistrationFailed /> : <RegistrationSuccess />}
     </div>
   )
 }
