@@ -1,8 +1,8 @@
 import { Input } from '../components/Input'
 import { Button } from '../components/Button'
 import { useState } from 'react';
-import fetch from 'node-fetch';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 
 export const Registration = () => {
   const [email, setEmail] = useState('');
@@ -16,15 +16,15 @@ export const Registration = () => {
     }
   }
 
-  const registrate = async () => {
-    await fetch('localhost:3000/users', {
-      method: 'POST',
-      body: { email: email, password: password }
-    });
+  const registrate = () => {
+    Axios.post('http://localhost:3001/users', {
+      email: email,
+      password: password
+    }).then((response) => response.config.data);
   }
 
   const handleClick = () => {
-
+    registrate();
   }
 
   return (
@@ -32,8 +32,8 @@ export const Registration = () => {
       <div>Registrar conta</div>
       <Input type="text" placeholder="email" onChange={(e) => handleChange(e)} />
       <Input type="password" placeholder="password" onChange={(e) => handleChange(e)} />
-      <Button>
-        <Link>
+      <Button onClick={() => handleClick()}>
+        <Link to='registration-result'>
           Registrar
         </Link>
       </Button>

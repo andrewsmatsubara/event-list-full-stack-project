@@ -12,7 +12,7 @@ app.use(cors());
 
 app.post('/users', createUserController);
 
-app.get('/users', readUserController)
+app.get('/users', readUserController);
 
 app.listen(PORT, () => {
   console.log(`Running server on port ${PORT}`);
