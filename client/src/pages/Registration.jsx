@@ -45,7 +45,7 @@ const Registration = ({ clickButton }) => {
 
   return (
     <section className='registration-page'>
-      <form className='registration-form'>
+      <form className='registration-form' onSubmit={(e) => e.preventDefault()}>
         <h1>Registrar conta</h1>
         <Input type="text" placeholder="email" onChange={(e) => handleChange(e)} />
         <Input type="password" placeholder="password" onChange={(e) => handleChange(e)} />
