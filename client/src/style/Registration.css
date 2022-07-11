@@ -23,3 +23,18 @@
 .registration-form input {
   margin: 10px;
 }
+
+.registration-issue-container {
+  display: flex;
+  height: 20px;
+  background-color: rgba(255, 53, 131, 0.4);
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  margin-bottom: 10px;
+}
+
+.registration-issue-container p {
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+}
