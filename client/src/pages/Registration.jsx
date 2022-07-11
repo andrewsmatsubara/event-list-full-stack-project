@@ -2,10 +2,10 @@ import { Input } from '../components/Input'
 import { Button } from '../components/Button'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clickButton } from '../redux/actions';
+import { registrate } from '../util/util';
 import '../style/Registration.css';
 
 const Registration = ({ clickButton }) => {
@@ -22,17 +22,8 @@ const Registration = ({ clickButton }) => {
     }
   }
 
-  const registrate = async () => {
-    const fetch = await Axios.post('http://localhost:3001/users', {
-      email: email,
-      password: password
-    }).then((response) => response.config.data).catch((e) => e.name);
-
-    return fetch;
-  }
-
   const handleClick = async () => {
-    const result = await registrate();
+    const result = await registrate(email, password);
 
     if (result === 'AxiosError') {
       await clickButton(true);
