@@ -1,11 +1,12 @@
 import { Input } from '../components/Input'
 import { Button } from '../components/Button'
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clickButton } from '../redux/actions';
+import '../style/Registration.css';
 
 const Registration = ({ clickButton }) => {
   const [email, setEmail] = useState('');
@@ -43,15 +44,15 @@ const Registration = ({ clickButton }) => {
   }
 
   return (
-    <section>
-      <div>Registrar conta</div>
-      <Input type="text" placeholder="email" onChange={(e) => handleChange(e)} />
-      <Input type="password" placeholder="password" onChange={(e) => handleChange(e)} />
-      {/* <Link to='registration-result'> */}
-      <Button onClick={() => handleClick()}>
-        Registrar
-      </Button>
-      {/* </Link> */}
+    <section className='registration-page'>
+      <form className='registration-form'>
+        <h1>Registrar conta</h1>
+        <Input type="text" placeholder="email" onChange={(e) => handleChange(e)} />
+        <Input type="password" placeholder="password" onChange={(e) => handleChange(e)} />
+        <Button onClick={() => handleClick()}>
+          Registrar
+        </Button>
+      </form>
     </section>
   );
 }

@@ -1,4 +1,4 @@
-const { createUser, readUser, readUserByEmail } = require('../models/users');
+const { createUser, readUserByEmail } = require('../models/users');
 
 const createUserService = async (email, password) => {
   const result = await createUser(email, password);
