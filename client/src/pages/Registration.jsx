@@ -11,6 +11,7 @@ import '../style/Registration.css';
 const Registration = ({ clickButton }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstLoginTry, setFirstLoginTry] = useState(true);
 
   const navigate = useNavigate();
 
@@ -25,10 +26,14 @@ const Registration = ({ clickButton }) => {
   const handleClick = async () => {
     const result = await registrate(email, password);
 
-    if (result === 'AxiosError') {
+    if (email === '' || password === '') {
+      setFirstLoginTry(false)
+    }
+
+    if (result === 'AxiosError' && (email !== '' && password !== '')) {
       await clickButton(true);
       navigate('/registration/registration-result');
-    } else if (result !== 'AxiosError') {
+    } else if (result !== 'AxiosError' && (email !== '' && password !== '')) {
       await clickButton(false);
       navigate('/registration/registration-result');
     }
@@ -38,6 +43,9 @@ const Registration = ({ clickButton }) => {
     <section className='registration-page'>
       <form className='registration-form' onSubmit={(e) => e.preventDefault()}>
         <h1>Registrar conta</h1>
+        {firstLoginTry === false ? <div className='registration-issue-container'>
+          <p>Coloque um email e uma senha nos campos requeridos para se registrar!</p>
+        </div> : ''}
         <Input type="text" placeholder="email" onChange={(e) => handleChange(e)} />
         <Input type="password" placeholder="password" onChange={(e) => handleChange(e)} />
         <Button onClick={() => handleClick()}>
