@@ -13,7 +13,13 @@ const readUser = async () => {
 }
 
 const readUserByEmail = async (email) => {
-  const [result] = await db.execute('SELECT * FROM users WHERE email = ?', [email]);
+  const [result] = await db.execute('SELECT * FROM users WHERE email = ?;', [email]);
+
+  return result;
+}
+
+const readUserByLogin = async (email, password) => {
+  const [result] = await db.execute('SELECT * FROM users WHERE email = ? AND password = ?;', [email, password]);
 
   return result;
 }
@@ -21,5 +27,6 @@ const readUserByEmail = async (email) => {
 module.exports = {
   createUser,
   readUser,
-  readUserByEmail
+  readUserByEmail,
+  readUserByLogin
 }

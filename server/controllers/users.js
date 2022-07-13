@@ -1,5 +1,5 @@
 const { readUser } = require("../models/users");
-const { createUserService, readUserByEmailService } = require("../services/users");
+const { createUserService, readUserByEmailService, readUserByLoginService } = require("../services/users");
 
 const createUserController = async (req, res) => {
   const email = req.body.email;
@@ -21,7 +21,22 @@ const readUserController = async (_req, res) => {
   return res.status(200).json(user);
 }
 
+const loginController = async (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const validateLogin = await readUserByLoginService(email, password);
+
+  console.log(validateLogin);
+
+  if (validateLogin.statusCode === 401) {
+    return res.status(validateLogin.statusCode).json({ message: validateLogin.message });
+  }
+
+  return res.status(201).json(validateLogin);
+}
+
 module.exports = {
   createUserController,
-  readUserController
+  readUserController,
+  loginController
 }

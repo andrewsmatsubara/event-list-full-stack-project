@@ -1,4 +1,4 @@
-const { createUser, readUserByEmail } = require('../models/users');
+const { createUser, readUserByEmail, readUserByLogin } = require('../models/users');
 
 const createUserService = async (email, password) => {
   const result = await createUser(email, password);
@@ -14,7 +14,20 @@ const readUserByEmailService = async (email) => {
   }
 }
 
+const readUserByLoginService = async (email, password) => {
+  const [result] = await readUserByLogin(email, password);
+
+  console.log(result);
+
+  if (result === undefined) {
+    return { statusCode: 401, message: 'login failed' }
+  }
+
+  return result;
+}
+
 module.exports = {
   createUserService,
-  readUserByEmailService
+  readUserByEmailService,
+  readUserByLoginService
 }

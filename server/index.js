@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
-const { createUserController, readUserController } = require('./controllers/users');
+const { createUserController, readUserController, loginController } = require('./controllers/users');
 const app = express();
 const PORT = 3001;
 
@@ -13,6 +13,8 @@ app.use(cors());
 app.post('/users', createUserController);
 
 app.get('/users', readUserController);
+
+app.post('/login', loginController);
 
 app.listen(PORT, () => {
   console.log(`Running server on port ${PORT}`);
