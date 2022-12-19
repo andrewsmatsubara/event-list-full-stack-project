@@ -1,3 +1,4 @@
+import React from 'react'
 import { RegistrationFailed } from '../components/RegistrationFailed';
 import { RegistrationSuccess } from '../components/RegistrationSuccess';
 import { store } from '../redux/store';

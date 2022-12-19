@@ -16,6 +16,6 @@ app.get('/users', readUserController);
 
 app.post('/login', loginController);
 
-app.listen(PORT, (_req, res) => {
-  res.send('funcionando!')
+app.listen(PORT, () => {
+    console.log('funcionando!');
 });

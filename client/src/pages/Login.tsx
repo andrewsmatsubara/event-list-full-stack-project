@@ -1,3 +1,4 @@
+import React from 'react'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
 import '../style/Login.css'
@@ -13,7 +14,7 @@ export const Login = () => {
 
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.placeholder === 'email') {
       setEmail(e.target.value)
     } else if (e.target.placeholder === 'password') {
@@ -28,7 +29,7 @@ export const Login = () => {
       const pw = document.getElementsByClassName('password');
 
       if (pw[0].classList.contains('password')) {
-        pw[0].value = '';
+        pw[0].nodeValue = '';
       }
 
       setFirstLoginTry(false);

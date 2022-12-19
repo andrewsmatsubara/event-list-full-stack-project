@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-export const registrate = async (email, password) => {
+export const registrate = async (email: string, password: string) => {
   const fetch = await Axios.post('http://localhost:3001/users', {
     email: email,
     password: password
@@ -9,7 +9,7 @@ export const registrate = async (email, password) => {
   return fetch;
 }
 
-export const login = async (email, password) => {
+export const login = async (email: string, password: string) => {
   const fetch = await Axios.post('http://localhost:3001/login', {
     email: email,
     password: password

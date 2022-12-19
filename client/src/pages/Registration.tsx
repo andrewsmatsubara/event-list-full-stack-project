@@ -1,21 +1,22 @@
+import React from 'react'
 import { Input } from '../components/Input'
 import { Button } from '../components/Button'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { AnyAction, bindActionCreators, Dispatch } from 'redux';
 import { clickButton } from '../redux/actions';
 import { registrate } from '../util/util';
 import '../style/Registration.css';
 
-const Registration = ({ clickButton }) => {
+const Registration = ({ clickButton }: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstRegistrationTry, setFirstRegistrationTry] = useState(true);
 
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.placeholder === 'email') {
       setEmail(e.target.value)
     } else if (e.target.placeholder === 'password') {
@@ -56,11 +57,11 @@ const Registration = ({ clickButton }) => {
   );
 }
 
-const mapStateToProps = store => ({
+const mapStateToProps = (store: { state: any; }) => ({
   newValue: store.state
 });
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
   bindActionCreators({ clickButton }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);
