@@ -17,8 +17,6 @@ const readUserByEmailService = async (email) => {
 const readUserByLoginService = async (email, password) => {
   const [result] = await readUserByLogin(email, password);
 
-  console.log(result);
-
   if (result === undefined) {
     return { statusCode: 401, message: 'login failed' }
   }
